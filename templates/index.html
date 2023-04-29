@@ -25,6 +25,7 @@
             const key = encodeURIComponent(inputKey.value);
             
             const url = `/brcode/${value}/${key}/${name}`
+            console.log(`URL: ${url}`);
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
