@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Using pybrcode online</title>
+</head>
+<body>
+    <label for="input-name">Name</label>
+    <input id="input-name" type="text"><br><br>
+    <label for="input-value">Value</label>
+    <input id="input-value" type="text"><br><br>
+    <label for="input-key">Key</label>
+    <input id="input-key" type="text"><br><br>
+    <button onclick="submit_test()">Test!</button>
+    <div id="div-response"></div>
+    <script>
+        const inputName = document.getElementById("input-name");
+        const inputValue = document.getElementById("input-value");
+        const inputKey = document.getElementById("input-key");
+        const divResponse = document.getElementById("div-response");
+
+        function submit_test() {
+            const value = encodeURIComponent(parseFloat(inputValue.value));
+            const name = encodeURIComponent(inputName.value);
+            const key = encodeURIComponent(inputKey.value);
+            
+            const url = `/brcode/${value}/${key}/${name}`
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    divResponse.innerHTML = data;
+                })
+        }
+    </script>
+</body>
+</html>
